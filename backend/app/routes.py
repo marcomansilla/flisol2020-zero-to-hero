@@ -12,7 +12,6 @@ contactos = db['contactos']
 
 class ContactById(Resource):
     def get(self, id):
-
         resultado = contactos.find_one({'_id': ObjectId(id)})
         return json.loads(dumps(resultado))
 
@@ -38,7 +37,29 @@ class Contact(Resource):
                         'message': 'El contacto se ha agregado exitosamente'})
 
     def put(self):
-        pass
+        data = request.get_json()
+
+        nombre = data['nombre']
+        apellido = data['apellido']
+        direccion = data['direccion']
+        telefono = data['telefono']
+        cumple = data['cumple']
+
+        result = contactos.find_one_and_update({
+            '_id': ObjectId(data['_id']['$oid'])
+        },
+        {
+            '$set': {
+                'nombre': nombre,
+                'apellido': apellido,
+                'direccion': direccion,
+                'telefono': telefono,
+                'cumple': cumple,
+            }
+        })
+
+        print(result)
+        return jsonify(data)
 
     def delete(self):
         id = request.get_json()['id']
