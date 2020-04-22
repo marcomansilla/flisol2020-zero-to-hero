@@ -45,7 +45,7 @@ class Contact(Resource):
         telefono = data['telefono']
         cumple = data['cumple']
 
-        result = contactos.find_one_and_update({
+        resultado = contactos.find_one_and_update({
             '_id': ObjectId(data['_id']['$oid'])
         },
         {
@@ -56,10 +56,10 @@ class Contact(Resource):
                 'telefono': telefono,
                 'cumple': cumple,
             }
-        })
+        },
+         return_document = True)
 
-        print(result)
-        return jsonify(data)
+        return json.loads(dumps(resultado))
 
     def delete(self):
         id = request.get_json()['id']

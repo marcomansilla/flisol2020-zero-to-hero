@@ -2,11 +2,11 @@
 POST http://localhost:5000/api/contact
 Content-Type: application/json
 {
-    "nombre": "andrew",
-    "apellido": "lloyd webber",
-    "direccion": "alsina 923",
-    "telefono": "999999999",
-    "cumple": "23/3/1989"
+    "nombre": "jake",
+    "apellido": "snake",
+    "direccion": "cordoba 432",
+    "telefono": "2222222233333",
+    "cumple": "22/4/1976"
 }
 
 # LISTAR TODOS LOS CONTACTOS
@@ -18,4 +18,22 @@ DELETE http://localhost:5000/contact
 content-type: application/json
 {
     "id": "5ea0ab049d25d3ed36fc828f"
+}
+
+# MOSTRAR UN CONTACTO
+GET http://localhost:5000/api/contact/5ea0adaffcdeb65c2e481697
+content-type: application/json
+
+# ACTUALIZAR UN CONTACTO
+PUT http://localhost:5000/api/contact
+content-type: application/json
+{
+  "_id": {
+    "$oid": "5ea0adaffcdeb65c2e481697"
+  },
+  "nombre": "alaxander",
+  "apellido": "graham bill",
+  "direccion": "alsina 923",
+  "telefono": "999999999",
+  "cumple": "23/3/1989"
 }
