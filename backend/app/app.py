@@ -9,6 +9,7 @@ api = Api(app)
 def index():
     return 'index page'
 
+api.add_resource(Contact, '/contact')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

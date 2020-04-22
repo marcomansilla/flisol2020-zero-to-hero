@@ -1,0 +1,10 @@
+# AGREGAR NUEVO CONTACTO
+POST http://localhost:5000/contact
+Content-Type: application/json
+{
+    "nombre": "juan",
+    "apellido": "perez",
+    "direccion": "calle SN",
+    "telefono": "39384934",
+    "cumple": "abril 23"
+}
