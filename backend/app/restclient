@@ -2,9 +2,12 @@
 POST http://localhost:5000/contact
 Content-Type: application/json
 {
-    "nombre": "juan",
-    "apellido": "perez",
-    "direccion": "calle SN",
-    "telefono": "39384934",
-    "cumple": "abril 23"
+    "nombre": "luis",
+    "apellido": "garcia",
+    "direccion": "San martin 393",
+    "telefono": "98989898",
+    "cumple": "mayo 23"
 }
+
+# LISTAR TODOS LOS CONTACTOS
+GET http://localhost:5000/contacts
