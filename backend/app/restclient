@@ -11,3 +11,11 @@ Content-Type: application/json
 
 # LISTAR TODOS LOS CONTACTOS
 GET http://localhost:5000/contacts
+
+
+# ELIMINAR UN CONTACTO
+DELETE http://localhost:5000/contact
+content-type: application/json
+{
+    "id":"5ea09e4d32fd891b36a528cb"
+}

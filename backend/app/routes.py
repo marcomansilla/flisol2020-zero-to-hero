@@ -1,6 +1,7 @@
 from flask import request, jsonify
 from flask_restful import Resource
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 from bson.json_util import dumps, loads
 import json
 
@@ -37,7 +38,9 @@ class Contact(Resource):
         pass
 
     def delete(self):
-        pass
+        id = request.get_json()['id']
+        resultado =  contactos.delete_one({'_id': ObjectId(id)})
+        return jsonify({'resultado': resultado.deleted_count})
 
 
 class Contacts(Resource):
