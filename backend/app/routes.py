@@ -10,10 +10,13 @@ db = client.Contactos
 contactos = db['contactos']
 
 
-class Contact(Resource):
-    def get(self):
-        pass
+class ContactById(Resource):
+    def get(self, id):
 
+        resultado = contactos.find_one({'_id': ObjectId(id)})
+        return json.loads(dumps(resultado))
+
+class Contact(Resource):
     def post(self):
         data = request.get_json()
         print(data)

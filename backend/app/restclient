@@ -1,21 +1,21 @@
 # AGREGAR NUEVO CONTACTO
-POST http://localhost:5000/contact
+POST http://localhost:5000/api/contact
 Content-Type: application/json
 {
-    "nombre": "luis",
-    "apellido": "garcia",
-    "direccion": "San martin 393",
-    "telefono": "98989898",
-    "cumple": "mayo 23"
+    "nombre": "andrew",
+    "apellido": "lloyd webber",
+    "direccion": "alsina 923",
+    "telefono": "999999999",
+    "cumple": "23/3/1989"
 }
 
 # LISTAR TODOS LOS CONTACTOS
-GET http://localhost:5000/contacts
+GET http://localhost:5000/api/contacts
 
 
 # ELIMINAR UN CONTACTO
 DELETE http://localhost:5000/contact
 content-type: application/json
 {
-    "id":"5ea09e4d32fd891b36a528cb"
+    "id": "5ea0ab049d25d3ed36fc828f"
 }
