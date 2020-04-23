@@ -15,15 +15,17 @@ class ContactById(Resource):
         resultado = contactos.find_one({'_id': ObjectId(id)})
         return json.loads(dumps(resultado))
 
+
 class Contact(Resource):
     def post(self):
         data = request.get_json()
-        print(data)
+
         nombre = data['nombre']
         apellido = data['apellido']
         direccion = data['direccion']
         telefono = data['telefono']
         cumple = data['cumple']
+        email = data['email']
 
         contactos.insert({
             'nombre': nombre,
@@ -31,6 +33,7 @@ class Contact(Resource):
             'direccion': direccion,
             'telefono': telefono,
             'cumple': cumple,
+            'email': email
         })
 
         return jsonify({'status': 200,
@@ -44,6 +47,7 @@ class Contact(Resource):
         direccion = data['direccion']
         telefono = data['telefono']
         cumple = data['cumple']
+        email = data['email']
 
         resultado = contactos.find_one_and_update({
             '_id': ObjectId(data['_id']['$oid'])
@@ -55,15 +59,14 @@ class Contact(Resource):
                 'direccion': direccion,
                 'telefono': telefono,
                 'cumple': cumple,
-            }
-        },
-         return_document = True)
+                'email': email}
+        }, return_document=True)
 
         return json.loads(dumps(resultado))
 
     def delete(self):
         id = request.get_json()['id']
-        resultado =  contactos.delete_one({'_id': ObjectId(id)})
+        resultado = contactos.delete_one({'_id': ObjectId(id)})
         return jsonify({'resultado': resultado.deleted_count})
 
 
