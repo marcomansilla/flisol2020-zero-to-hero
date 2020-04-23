@@ -109,7 +109,7 @@
          },
          saveContact(contacto){
              if (this.action == 'update') {
-                 axios.put('http://localhost:5000/api/contact', {data:{ ...contacto}}).then(response => {
+                 axios.put('http://localhost:5000/api/contact', { ...contacto}).then(response => {
                      this.getContacts();
                      this.$buefy.toast.open({
                          message: 'El usuario ha sido actualizado!',
