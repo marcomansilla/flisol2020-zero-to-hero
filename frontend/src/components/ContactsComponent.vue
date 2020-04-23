@@ -1,7 +1,7 @@
 <template lang="pug">
    div
     br
-    h1.has-text-centered.title.is-1 Contact List
+    h1.has-text-centered.title.is-1 Lista de Contactos
     contact-list
 </template>
 

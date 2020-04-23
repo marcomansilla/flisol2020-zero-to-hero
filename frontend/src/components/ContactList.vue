@@ -1,5 +1,11 @@
 <template lang="pug">
     div#contactList
+        b-button#newContact(
+                            type="is-info"
+                            icon-left="user-plus"
+                            icon-pack="fas" size="is-medium"
+                            @click="openModal=true")
+        br
         table.table
             thead
                 tr
@@ -24,16 +30,39 @@
                                 icon-right="user-slash"
                                 icon-pack="fas"
                                 @click="deleteContact(contact)")
-
+        b-modal(
+                :active.sync="openModal"
+                has-modal-card
+                trap-focus
+                aria-role="dialog"
+                aria-modal
+        )
+                modal-form-component(v-model="contact")
+                    template(slot="savebnt")
+                        button.is-info(icon-right="save" icon-pack="fas")
 </template>
 
 <script>
  import axios from 'axios';
+ import ModalFormComponent from '@/components/ModalFormComponent'
 
  export default {
+     components:{
+        ModalFormComponent
+     },
      data(){
          return {
-             data:null
+             data:null,
+             openModal: false,
+             action:null,
+             contact:{
+                 nombre:'',
+                 apellido:'',
+                 direccion:'',
+                 telefono:'',
+                 cumple:'',
+                 email:''
+             }
          }
      },
      mounted(){
@@ -64,6 +93,17 @@
                      }).catch(error => console.log(error))
                  }
              })
+         },
+         createContact(){
+             this.openModal=true;
+             this.action='save';
+         },
+         updateContact(){
+             this.openModal=true;
+             this.action='update';
+         },
+         saveContact(){
+
          }
      }
  }
@@ -72,14 +112,17 @@
 
 <style lang="scss">
  #contactList {
+     #newContact {
+         position:relative;
+         float:right;
+         right:2rem;
+     }
      table {
          width:90vw;
-         margin:auto;
+         margin:3rem auto;
          &.table thead tr th {
              text-align:center
          }
-
      }
  }
-
 </style>
