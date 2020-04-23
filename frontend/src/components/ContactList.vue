@@ -4,7 +4,7 @@
                             type="is-info"
                             icon-left="user-plus"
                             icon-pack="fas" size="is-medium"
-                            @click="openModal=true")
+                            @click="createContact")
         br
         table.table
             thead
@@ -24,7 +24,10 @@
                     td {{contact.telefono}}
                     td {{contact.cumple}}
                     td.has-text-centered
-                       b-button(type="is-info" icon-right="user-edit" icon-pack="fas")
+                       b-button(type="is-info"
+                                icon-right="user-edit"
+                                icon-pack="fas"
+                                @click="updateContact(contact)")
                     td.has-text-centered
                        b-button(type="is-danger"
                                 icon-right="user-slash"
@@ -36,10 +39,11 @@
                 trap-focus
                 aria-role="dialog"
                 aria-modal
-        )
-                modal-form-component(v-model="contact")
-                    template(slot="savebnt")
-                        button.is-info(icon-right="save" icon-pack="fas")
+                )
+                modal-form-component(v-model="contacto")
+                    template(slot="savebtn")
+                        b-button.is-info(icon-right="save" icon-pack="fas" @click="saveContact(contacto)") Guardar
+
 </template>
 
 <script>
@@ -48,14 +52,14 @@
 
  export default {
      components:{
-        ModalFormComponent
+         ModalFormComponent
      },
      data(){
          return {
              data:null,
              openModal: false,
              action:null,
-             contact:{
+             contacto:{
                  nombre:'',
                  apellido:'',
                  direccion:'',
@@ -98,12 +102,35 @@
              this.openModal=true;
              this.action='save';
          },
-         updateContact(){
+         updateContact(contact){
              this.openModal=true;
              this.action='update';
+             Object.assign(this.contacto, contact);
          },
-         saveContact(){
-
+         saveContact(contacto){
+             if (this.action == 'update') {
+                 axios.put('http://localhost:5000/api/contact', {data:{ ...contacto}}).then(response => {
+                     this.getContacts();
+                     this.$buefy.toast.open({
+                         message: 'El usuario ha sido actualizado!',
+                         type:'is-success',
+                         position:'is-bottom'
+                     })
+                     this.openModal=false;
+                     this.action=null;
+                 }).catch(error => console.log(error))
+             } else {
+                 axios.post('http://localhost:5000/api/contact', { ...contacto}).then(response => {
+                     this.getContacts();
+                     this.$buefy.toast.open({
+                         message: 'El usuario ha sido creado!',
+                         type:'is-success',
+                         position:'is-bottom'
+                     })
+                     this.openModal=false;
+                     this.action=null;
+                 }).catch(error => console.log(error))
+             }
          }
      }
  }
