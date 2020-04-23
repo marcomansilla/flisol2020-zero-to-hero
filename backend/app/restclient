@@ -14,7 +14,7 @@ GET http://localhost:5000/api/contacts
 
 
 # ELIMINAR UN CONTACTO
-DELETE http://localhost:5000/contact
+DELETE http://localhost:5000/api/contact
 content-type: application/json
 {
     "id": "5ea0ab049d25d3ed36fc828f"

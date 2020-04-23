@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from routes import Contact, ContactById, Contacts
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 api.add_resource(Contact, '/api/contact')
 api.add_resource(ContactById, '/api/contact/<id>')

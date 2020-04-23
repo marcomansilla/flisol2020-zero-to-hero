@@ -2,7 +2,7 @@
     div
         b-navbar(type="is-info")
             template(slot="brand")
-                navbar-item(href="/")
+                b-navbar-item(href="/")
                     .title.is-2.has-text-white Flisol 2020
         contacts-component
 </template>
