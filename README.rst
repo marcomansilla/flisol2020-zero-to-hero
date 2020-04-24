@@ -45,3 +45,15 @@ se asumen conocimientos previos o familiaridad relacionados a
     - estructuras de datos
 
 al menos a nivel basico.
+
+Como ejecutar
+=============
+
+0. Instalar docker
+1. Clone este repositorio
+2. cd /frontend && npm run build # para crear el build de produccion del frontend
+3. volver a la raiz del repositorio y ejecutar
+   - docker-compose up --build
+
+La api esta en http://localhost:5000/api/contacts
+el frontend se puede ver en http://localhost:8081/
