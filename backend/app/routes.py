@@ -52,7 +52,7 @@ class Contact(Resource):
         resultado = contactos.find_one_and_update({
             '_id': ObjectId(data['_id']['$oid'])
         },
-        {
+                                                  {
             '$set': {
                 'nombre': nombre,
                 'apellido': apellido,

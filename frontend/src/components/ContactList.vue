@@ -40,7 +40,7 @@ div#contactList
       aria-role="dialog"
       aria-modal
       )
-      modal-form-component(v-model="contacto")
+      modal-form-component(v-model="contacto" :action="action")
         template(slot="savebtn")
           b-button.is-info(icon-right="save" icon-pack="fas" @click="saveContact(contacto)") Guardar
 </template>
