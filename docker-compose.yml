@@ -23,6 +23,16 @@ services:
           MONGO_INITDB_ROOT_PASSWORD: root
         networks:
           - backend
+    web:
+      image: nginx
+      volumes:
+        - ./frontend/dist:/usr/share/nginx/html
+      ports:
+        - 8080:80
+      networks:
+        - backend
+      depends_on:
+        - backend
 
 networks:
   backend:
